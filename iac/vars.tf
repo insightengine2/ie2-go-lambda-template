@@ -27,7 +27,23 @@ variable "filename" {
     type    = string
 }
 
-variable "iac-bucket" {
+variable "iac-root-bucket" {
     default = "ie2-iac"
+    type    = string
+}
+
+variable "api-resource" {
+    default     = "poc"
+    type        = string
+    description = "The resource name for which your endpoint is responsible."
+}
+
+variable "runtime" {
+    default = "go1.x"
+    type    = string
+}
+
+variable "handler" {
+    default = "main"
     type    = string
 }

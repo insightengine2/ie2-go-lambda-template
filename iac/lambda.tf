@@ -1,36 +1,19 @@
-resource "aws_cloudwatch_event_rule" "my-event-rule-name" {
-  name              = "my-event-rule-name"
-  description       = "my-description"
-  event_bus_name    = "default"
+resource "aws_lambda_permission" "my-lambda" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.my-lambda.function_name
+  principal     = "apigateway.amazonaws.com"
 
-  event_pattern     = jsonencode({
+  # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
+  source_arn = "arn:aws:execute-api:${var.region}:${data.terraform_remote_state.lambda-state.outputs.account-id}:${data.terraform_remote_state.lambda-state.outputs.rest-apigateway-id}/*/${aws_api_gateway_method.poc-get.http_method}${aws_api_gateway_resource.poc.path}"
+} 
 
-  })
-}
-
-resource "aws_cloudwatch_event_target" "my-target-name" {
-  rule  = aws_cloudwatch_event_rule.my-event-rule-name.name
-  arn   = aws_lambda_function.my-lambda-name.arn
-
-  retry_policy {
-    maximum_event_age_in_seconds  = 3600
-    maximum_retry_attempts        = 5
-  }
-
-  input_transformer {
-    input_paths     = { }
-    
-    input_template = <<EOF
-EOF
-  } 
-}
-
-resource "aws_lambda_function" "my-lambda-name" {
+resource "aws_lambda_function" "my-lambda" {
   filename          = "../dist/${var.filename}"
   function_name     = "${var.lambda-name}"
   role              = data.terraform_remote_state.dsf.outputs.role_lambda_arn
   source_code_hash  = filebase64sha256("../dist/${var.filename}")
-  runtime           = "go1.x"
-  handler           = "main"
+  runtime           = var.runtime
+  handler           = var.handler
   timeout           = 180
 }
