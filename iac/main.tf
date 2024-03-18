@@ -1,6 +1,6 @@
 terraform {
 
-    required_version = "~> 1.1.0"
+    required_version = "~> 1.7.0"
 
     required_providers {
         aws = {
@@ -11,9 +11,9 @@ terraform {
 
     // comment out the following block 
     backend "s3" {
-        bucket  = "${var.iac-bucket}"
-        key     = "state/lambdas/${var.lambda-name}/${var.tag-environment}/terraform.tfstate"
-        region  = "${var.region}"
+        bucket  = "ie2-iac"
+        key     = "state/lambdas/lambda-poc/dev/terraform.tfstate"
+        region  = "us-east-1"
     }
 }
 
@@ -34,7 +34,7 @@ provider "aws" {
 data "terraform_remote_state" "lambda-state" {
     backend = "s3"
     config = {
-        bucket  = "${var.iac-bucket}"
+        bucket  = "${var.iac-root-bucket}"
         key     = "state/terraform.tfstate"
         region  = "${var.region}"
     }

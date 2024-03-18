@@ -21,6 +21,10 @@ type Response struct {
 
 func EventHandler(ev MyEvent) string {
 
+	/*
+	*	Replace all the code in this block with your custom implementation.
+	 */
+
 	res := "Placeholder response. It works!"
 	region := os.Getenv("AWS_REGION")
 
@@ -31,41 +35,6 @@ func EventHandler(ev MyEvent) string {
 	if err != nil {
 		return fmt.Sprintf("Error: %s", err)
 	}
-
-	// TODO: Insert your command below...
-	//	The following block comment is here for illustrative purposes only
-
-	/*****************************
-
-	// Create new EC2 client
-	svc := ec2.New(sess)
-
-	input := &ec2.StartInstancesInput{
-		InstanceIds: []*string{
-			aws.String(ev.InstanceId),
-		},
-		DryRun: aws.Bool(true),
-	}
-
-	// try your command first
-	result, err := svc.StartInstances(input)
-	awsErr, ok := err.(awserr.Error)
-
-	if ok && awsErr.Code() == "DryRunOperation" {
-		// Let's now set dry run to be false. This will allow us to run the command for realz
-		input.DryRun = aws.Bool(false)
-		result, err = svc.StartInstances(input)
-		if err != nil {
-			res = fmt.Sprintf("Error: %s", err)
-		} else {
-			res = fmt.Sprintf("Success: %s", result.GoString())
-		}
-
-	} else { // This could be due to a lack of permissions
-		res = fmt.Sprintf("Error: %s", err)
-	}
-
-	*****************************/
 
 	return res
 }
