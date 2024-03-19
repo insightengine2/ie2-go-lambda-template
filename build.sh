@@ -7,6 +7,6 @@ GOARCH="arm64"
 # -tags lambda.norpc exludes the remote procedure call component of the lambda library
 # which reduces the binary size
 
-go build -tags lambda.norpc -o ./dist/main main.go
+go build -tags lambda.norpc -o ./dist/bootstrap main.go
 cd ./dist
-zip main.zip main
+zip bootstrap.zip bootstrap

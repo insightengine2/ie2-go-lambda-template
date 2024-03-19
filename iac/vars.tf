@@ -39,7 +39,7 @@ variable "api-resource" {
 }
 
 variable "runtime" {
-    default = "go1.x"
+    default = "provided.al2023"
     type    = string
 }
 
