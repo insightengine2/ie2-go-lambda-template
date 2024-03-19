@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"context"
 	"os"
 
 	"github.com/aws/aws-lambda-go/lambda"
@@ -19,13 +19,11 @@ type Response struct {
 	Message string `json:"Message:"`
 }
 
-func EventHandler(ev MyEvent) string {
+func HandleRequest(context context.Context, ev MyEvent) (Response, error) {
 
-	/*
-	*	Replace all the code in this block with your custom implementation.
-	 */
-
-	res := "Placeholder response. It works!"
+	res := Response{
+		Message: "Success!",
+	}
 	region := os.Getenv("AWS_REGION")
 
 	// Load session from shared config
@@ -33,20 +31,13 @@ func EventHandler(ev MyEvent) string {
 		Region: aws.String(region)},
 	)
 	if err != nil {
-		return fmt.Sprintf("Error: %s", err)
+		res.Message = "Error!"
 	}
 
-	return res
-}
-
-func HandleEvent(ev MyEvent) (Response, error) {
-
-	// Add any logic here and call implementation func
-	res := EventHandler(ev)
-	return Response{Message: res}, nil
+	return res, err
 }
 
 // entry point to your lambda
 func main() {
-	lambda.Start(HandleEvent)
+	lambda.Start(HandleRequest)
 }
