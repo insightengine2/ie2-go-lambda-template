@@ -4,6 +4,7 @@ import (
 	"context"
 	"os"
 
+	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -15,14 +16,13 @@ type MyEvent struct {
 	Status     string `json:"Status"`
 }
 
-type Response struct {
-	Message string `json:"Message:"`
-}
+func HandleRequest(context context.Context, ev MyEvent) (events.APIGatewayProxyResponse, error) {
 
-func HandleRequest(context context.Context, ev MyEvent) (Response, error) {
-
-	res := Response{
-		Message: "Success!",
+	res := events.APIGatewayProxyResponse{
+		IsBase64Encoded: false,
+		StatusCode:      200,
+		Headers:         nil,
+		Body:            "Success!",
 	}
 	region := os.Getenv("AWS_REGION")
 
@@ -31,7 +31,7 @@ func HandleRequest(context context.Context, ev MyEvent) (Response, error) {
 		Region: aws.String(region)},
 	)
 	if err != nil {
-		res.Message = "Error!"
+		res.Body = "Error!"
 	}
 
 	return res, err
