@@ -1,6 +1,6 @@
 ## Lambda Component
 variable "lambda-name" {
-    default = "my-lambda-name"
+    default = "lambda-poc"
     type    = string
 }
 
@@ -23,7 +23,7 @@ variable "region" {
 
 ## Project Variables
 variable "filename" {
-    default = "main.zip"
+    default = "bootstrap.zip"
     type    = string
 }
 
@@ -33,17 +33,21 @@ variable "iac-root-bucket" {
 }
 
 variable "api-resource" {
-    default     = "poc"
-    type        = string
-    description = "The resource name for which your endpoint is responsible."
+    default = "poc"
+    type    = string
 }
 
-variable "runtime" {
-    default = "provided.al2023"
+variable "aws-runtime" {
+    default = "provided.al2"
+    type    = string
+}
+
+variable "architecture" {
+    default = "arm64"
     type    = string
 }
 
 variable "handler" {
-    default = "main"
+    default = "bootstrap"
     type    = string
 }
