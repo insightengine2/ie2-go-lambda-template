@@ -1,0 +1,14 @@
+version: 0.2
+
+env:
+  shell: /bin/sh
+  
+phases:
+  install:
+    commands:
+      - go version
+      - go get .
+      - chmod +x ./scripts/build.sh
+  build:
+    commands:
+      - ./scripts/build.sh
