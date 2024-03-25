@@ -1,6 +1,7 @@
 $env:GOOS="linux"
 $env:CGO_ENABLED="0"
 $env:GOARCH="amd64"
+$env:GOTOOLCHAIN="local"
 
 # -tags lambda.norpc exludes the remote procedure call component of the lambda library
 # which reduces the binary size

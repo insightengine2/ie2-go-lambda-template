@@ -1,6 +1,6 @@
 module github.com/insightengine2/ie2-lambda-template
 
-go 1.21.4
+go 1.21.0
 
 require (
 	github.com/aws/aws-lambda-go v1.46.0
