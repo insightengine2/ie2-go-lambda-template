@@ -7,26 +7,42 @@ A template project for creating GO lambdas
 - Create a new repo based off this template
 - Edit the src/main.go file
     - Add your custom logic to the function `EventHandler`
-- Edit the iac/vars.tf file
-    - Update the string value for the variable <lambda-name>
-- Edit the iac/lambda.tf
-    - Change the resource names and references as necessary
 
-You shouldn't need to change the build.ps1 script
+You should NOT need to change the `build.ps1` or `build.sh` scripts
 
 This project assumes your lambda's primary entry point is the main function and assuming you don't change that everything should just work
 
 ## Usage PreRequisite(s)
 
-- go v1.17.x
-- build-lambda-zip tool
-    - `go install github.com/aws/aws-lambda-go/cmd/build-lambda-zip@latest`
+- go v1.21.x
 - Terraform
 
-## Compile & Deploy Steps
+### Windows - Additional PreRequisites
+- build-lambda-zip tool
+    - `go install github.com/aws/aws-lambda-go/cmd/build-lambda-zip@latest`
 
-- Open Powershell prompt in the src folder
-    - `./build.ps1`
-    
-- In powershell, navigate to the iac folder
-    - `terraform apply`
+## Compile
+
+### Windows
+- Open Powershell prompt in the root project
+    - `./scripts/build.ps1`
+
+### OSX or Linux
+- Start a terminal or bash session in the project root
+    - `./scripts/build.sh`
+
+>
+> You  may need to make the `build.sh` file executable. If so, issue the following in your terminal / bash session:
+>
+>   `chmod +x ./scripts/build.sh`
+>
+
+## Deployment
+
+Deployments are handled automagically when your code is committed and merged with our project!
+
+## REST Endpoint
+
+This template project provides a file for defining your lambda function as a handler for a REST API endpoint in our system.
+
+TODO: Provide instructions on editing the `endpoint.yml` file.
