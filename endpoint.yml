@@ -1,5 +1,0 @@
-resource: my-resource
-  method: GET
-  req:
-  res:
-  

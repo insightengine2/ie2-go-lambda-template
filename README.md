@@ -45,4 +45,4 @@ Deployments are handled automagically when your code is committed and merged wit
 
 This template project provides a file for defining your lambda function as a handler for a REST API endpoint in our system.
 
-TODO: Provide instructions on editing the `endpoint.yml` file.
+See the `ie2-config.yml` file for more information.
