@@ -2,7 +2,7 @@
 # this value will be used to lookup up an existing lambda function
 name: lambda-poc
 architecture: arm64
-runtime: provided.a12
+runtime: provided.al2
 handler: bootstrap
 filename: bootstrap.zip
 # optional
