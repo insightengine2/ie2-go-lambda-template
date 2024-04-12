@@ -1,6 +1,10 @@
 # the name of your lambda function
 # this value will be used to lookup up an existing lambda function
 name: lambda-poc
+architecture: arm64
+runtime: provided.a12
+handler: bootstrap
+filename: bootstrap.zip
 # optional
 #   include the endpoint block IFF your function acts as a handler
 #   for a REST API endpoint
