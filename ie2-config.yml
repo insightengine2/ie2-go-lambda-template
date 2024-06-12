@@ -1,6 +1,6 @@
 # the name of your lambda function
 # this value will be used to lookup up an existing lambda function
-name: lambda-poc
+name: my-lambda
 architecture: arm64
 runtime: provided.al2
 handler: bootstrap
@@ -17,7 +17,7 @@ endpoint:
     # the name of the REST API resource your function is responsible for
     # this name will be included in the api as a path value
     # ie. https://api.insightengine.com/v1/poc
-    resource: poc
+    resource: mylambda
     # a list of REST methods (GET, POST, PUT, DELETE...) supported by your function
     methods:
       - name: GET
