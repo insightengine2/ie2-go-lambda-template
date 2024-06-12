@@ -24,6 +24,7 @@ func HandleRequest(context context.Context, ev MyEvent) (events.APIGatewayProxyR
 		Headers:         nil,
 		Body:            "Success!",
 	}
+
 	region := os.Getenv("AWS_REGION")
 
 	// Load session from shared config

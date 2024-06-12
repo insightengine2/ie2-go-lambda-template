@@ -3,9 +3,10 @@ version: 0.2
 
 env:
   shell: /bin/sh
-  
 phases:
   install:
+    runtime-versions:
+      golang: 1.21
     commands:
       - go version
       - go get .
@@ -13,3 +14,7 @@ phases:
   build:
     commands:
       - ./scripts/build.sh
+artifacts:
+  files:
+    - "**/*"
+  base-directory: dist
