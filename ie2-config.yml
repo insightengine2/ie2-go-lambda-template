@@ -18,13 +18,13 @@ endpoint:
     # this name will be included in the api as a path value
     # ie. https://api.insightengine.com/v1/poc
     resource: poc
-      # a list of REST methods (GET, POST, PUT, DELETE...) supported by your function
-      methods:
-        - name: GET
-          # declaration of the request object properties
-          req:
-          # declaration of the response object properties
-          res:
+    # a list of REST methods (GET, POST, PUT, DELETE...) supported by your function
+    methods:
+      - name: GET
+        # declaration of the request object properties
+        req:
+        # declaration of the response object properties
+        res:
   # This config allows for declaring multiple versions of your endpoint.
   # New versions are typically required when adding new features that
   #   are not backwards compatible. Changes to the shape of existing
