@@ -2,6 +2,7 @@
 # this value will be used to lookup up an existing lambda function
 name: my-lambda
 architecture: arm64
+rolename: lambda-role
 runtime: provided.al2023
 handler: bootstrap
 filename: bootstrap.zip

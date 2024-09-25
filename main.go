@@ -2,12 +2,10 @@ package main
 
 import (
 	"context"
-	"os"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go-v2/config"
 )
 
 type MyEvent struct {
@@ -25,17 +23,9 @@ func HandleRequest(context context.Context, ev MyEvent) (events.APIGatewayProxyR
 		Body:            "Success!",
 	}
 
-	region := os.Getenv("AWS_REGION")
+	config.LoadDefaultConfig(context)
 
-	// Load session from shared config
-	_, err := session.NewSession(&aws.Config{
-		Region: aws.String(region)},
-	)
-	if err != nil {
-		res.Body = "Error!"
-	}
-
-	return res, err
+	return res, nil
 }
 
 // entry point to your lambda
